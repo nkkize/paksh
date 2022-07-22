@@ -1,0 +1,23 @@
+{
+  "name": "paksh",
+  "version": "1.0.0",
+  "description": "feathersjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nkkize/paksh.git"
+  },
+  "author": "Narender Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nkkize/paksh/issues"
+  },
+  "homepage": "https://github.com/nkkize/paksh#readme",
+  "dependencies": {
+    "@feathersjs/feathers": "^4.5.15"
+  }
+}
