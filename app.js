@@ -1,6 +1,5 @@
 const feathers = require("@feathersjs/feathers");
-const app = feathers();
-
+const express = require("@feathersjs/express");
 class MessaeService {
   constructor() {
     this.messages = [];
@@ -21,27 +20,26 @@ class MessaeService {
   }
 }
 
+const app = express(feathers());
+// parse json body
+app.use(express.json());
+// parse url-encoded params
+app.use(express.urlencoded({ extended: true }));
+// hsot static files from the current folder
+app.use(express.static(__dirname));
+
+//Add REST API support
+app.configure(express.rest());
+// resiter errror hanlder than the default
+app.use(express.errorHandler());
+
 // register the message service on the feathers application
 app.use("messages", new MessaeService());
 
-// log every time when a new message has been created
-app.service("messages").on("created", (message) => {
-  console.log("new messge created: " + message.text);
+app.listen(3030).on("listening", () => {
+  console.log("feathers server is listening on localhost:3030");
 });
 
-// main
-
-const main = async () => {
-  await app.service("messages").create({
-    text: "Hi there!",
-  });
-  await app.service("messages").create({
-    text: "Hi Again!",
-  });
-
-  const messages = await app.service("messages").find();
-
-  console.log("All Messages: " + JSON.stringify(messages));
-};
-
-main();
+app.service("messages").create({
+  text: "hello from the server",
+});
