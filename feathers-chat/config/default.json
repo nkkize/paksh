@@ -28,5 +28,6 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost:27017/feathers_chat"
+  "mongodb": "mongodb://localhost:27017/feathers_chat",
+  "nedb": "../data"
 }
